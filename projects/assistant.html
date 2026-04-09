@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant - My Project</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .project-page { margin-top: 70px; min-height: 100vh; padding-bottom: 50px; }
+        .back-btn { margin-bottom: 30px; }
+        .assistant-page { background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)); padding: 40px; border-radius: 15px; }
+        .chat-container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .bot-message {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        .bot-message i {
+            font-size: 24px;
+            color: #667eea;
+            flex-shrink: 0;
+        }
+        .bot-message p {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            margin: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        .user-message {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+        }
+        .user-message p {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 10px;
+            max-width: 70%;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .option-btn {
+            padding: 12px 16px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #667eea;
+            text-align: center;
+            font-size: 13px;
+        }
+        .option-btn:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h2>🚀 MyPortfolio</h2>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About Me</a></li>
+                    <li><a href="../projects.html" class="active">My Projects</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="project-page">
+        <div class="container">
+            <a href="../projects.html" class="back-btn" style="display: inline-block;">
+                <button class="btn btn-secondary">← Back to Projects</button>
+            </a>
+
+            <div class="assistant-page">
+                <h1 style="font-size: 40px; margin-bottom: 10px;">🤖 AI Learning Assistant</h1>
+                <p style="font-size: 18px; color: #666; margin-bottom: 30px;">Smart chatbot with 6 categories of learning</p>
+
+                <div class="chat-container">
+                    <div class="assistant-container">
+                        <div id="chatBox" style="background: #f8f9fa; padding: 20px; border-radius: 10px; height: 400px; overflow-y: auto; margin-bottom: 20px; display: flex; flex-direction: column; gap: 15px;">
+                            <div class="bot-message">
+                                <i class="fas fa-robot"></i>
+                                <p>Hello! 👋 I'm your learning assistant. Choose a category or type your question!</p>
+                            </div>
+                        </div>
+
+                        <div id="assistantOptions" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 20px;"></div>
+
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="userInput" placeholder="Type your question..." style="flex: 1; padding: 12px 16px; border: 2px solid #ddd; border-radius: 8px; font-size: 14px;" onkeypress="if(event.key === 'Enter') sendMessage()">
+                            <button onclick="sendMessage()" style="width: 45px; height: 45px; background: linear-gradient(135deg, #667eea, #764ba2); border: none; border-radius: 8px; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px;">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>MyPortfolio</h4>
+                    <p>Building digital experiences that matter.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../about.html">About Me</a></li>
+                        <li><a href="../projects.html">My Projects</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Me</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 My Portfolio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Assistant data
+        const assistantData = {
+            categories: [
+                { id: 'html', label: '📄 HTML' },
+                { id: 'css', label: '🎨 CSS' },
+                { id: 'js', label: '⚡ JavaScript' },
+                { id: 'web', label: '🌐 Web Dev' },
+                { id: 'stories', label: '📚 Stories' },
+                { id: 'learn', label: '💡 Learning Tips' }
+            ],
+            responses: {
+                html: [
+                    { q: "What is HTML?", a: "HTML stands for HyperText Markup Language. It's used to create the structure and content of web pages using tags and elements." },
+                    { q: "What is a semantic tag?", a: "Semantic tags describe meaning to the browser. Examples: <header>, <nav>, <article>, <section>. They improve accessibility and SEO." },
+                    { q: "Difference between <div> and <section>", a: "<div> is a generic container for styling. <section> is semantic and represents a thematic grouping of content." }
+                ],
+                css: [
+                    { q: "What is CSS?", a: "CSS (Cascading Style Sheets) is used to style HTML elements, controlling colors, layouts, fonts, and more." },
+                    { q: "What is Flexbox?", a: "Flexbox is a layout model that allows flexible arrangement of elements in rows or columns. Use display: flex on a container." },
+                    { q: "How to center content?", a: "You can center content using Flexbox: display: flex; justify-content: center; align-items: center;" }
+                ],
+                js: [
+                    { q: "What is JavaScript?", a: "JavaScript is a programming language that adds interactivity to web pages. It runs in browsers and can manipulate the DOM." },
+                    { q: "What is the DOM?", a: "DOM (Document Object Model) is a tree structure representing HTML elements. JavaScript can interact with it to change content and styles." },
+                    { q: "What is an event listener?", a: "An event listener watches for specific events (like clicks) and runs a function when they occur. Example: element.addEventListener('click', function)" }
+                ],
+                web: [
+                    { q: "What is responsive design?", a: "Responsive design makes websites look good on all devices (mobile, tablet, desktop) using flexible layouts and media queries." },
+                    { q: "What is a framework?", a: "A framework is a collection of pre-written code that helps developers build applications faster. Examples: React, Vue, Angular." },
+                    { q: "What is an API?", a: "API (Application Programming Interface) is a set of rules that allows programs to communicate with each other and share data." }
+                ],
+                stories: [
+                    { q: "Who is Max?", a: "Max is the brave dog from our first story who learns that true bravery comes from helping others, even when scared." },
+                    { q: "Tell me about Luna", a: "Luna is a curious cat who discovers that curiosity can lead to wonderful adventures and new friendships." },
+                    { q: "What about Timmy?", a: "Timmy is a tiny turtle who learns that even small creatures can make a big difference through kindness and determination." }
+                ],
+                learn: [
+                    { q: "How to learn web development?", a: "Start with HTML basics, then CSS for styling, then JavaScript for interactivity. Practice by building projects!" },
+                    { q: "Best learning resources?", a: "Try MDN Web Docs, W3Schools, freeCodeCamp, Codecademy. Build projects as you learn to reinforce concepts." },
+                    { q: "How to stay motivated?", a: "Set small goals, build real projects, join communities, celebrate progress, and remember that everyone starts as a beginner!" }
+                ]
+            }
+        };
+
+        let currentCategory = null;
+
+        function renderCategories() {
+            const optionsDiv = document.getElementById('assistantOptions');
+            optionsDiv.innerHTML = '';
+            
+            assistantData.categories.forEach(category => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerHTML = category.label;
+                btn.onclick = () => selectCategory(category.id);
+                optionsDiv.appendChild(btn);
+            });
+        }
+
+        function selectCategory(categoryId) {
+            currentCategory = categoryId;
+            const optionsDiv = document.getElementById('assistantOptions');
+            optionsDiv.innerHTML = '';
+            
+            const responses = assistantData.responses[categoryId] || [];
+            
+            responses.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = item.q;
+                btn.onclick = () => showAnswer(item.a);
+                optionsDiv.appendChild(btn);
+            });
+            
+            const backBtn = document.createElement('button');
+            backBtn.className = 'option-btn';
+            backBtn.textContent = '← Back';
+            backBtn.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+            backBtn.style.color = 'white';
+            backBtn.onclick = () => {
+                currentCategory = null;
+                renderCategories();
+            };
+            optionsDiv.appendChild(backBtn);
+        }
+
+        function showAnswer(answer) {
+            const chatBox = document.getElementById('chatBox');
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'bot-message';
+            messageDiv.innerHTML = `
+                <i class="fas fa-robot"></i>
+                <p>${answer}</p>
+            `;
+            
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            const chatBox = document.getElementById('chatBox');
+            
+            const userDiv = document.createElement('div');
+            userDiv.className = 'user-message';
+            userDiv.innerHTML = `<p>${message}</p>`;
+            chatBox.appendChild(userDiv);
+            
+            input.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+            
+            setTimeout(() => {
+                const botDiv = document.createElement('div');
+                botDiv.className = 'bot-message';
+                
+                let response = "That's a great question! I'm learning more topics every day. Try selecting a category above to explore more!";
+                
+                if (message.toLowerCase().includes('hello') || message.toLowerCase().includes('hi')) {
+                    response = "Hello! 👋 How can I help you today? Choose a category or ask a question!";
+                } else if (message.toLowerCase().includes('story')) {
+                    response = "We have three amazing stories: Max the Brave Dog, Luna & the Magic Star, and Timmy the Tiny Turtle!";
+                } else if (message.toLowerCase().includes('quiz')) {
+                    response = "You can take our interactive quiz by clicking the Quiz project!";
+                } else if (message.toLowerCase().includes('thanks') || message.toLowerCase().includes('thank')) {
+                    response = "You're welcome! I'm here to help. Feel free to ask more questions! 😊";
+                }
+                
+                botDiv.innerHTML = `
+                    <i class="fas fa-robot"></i>
+                    <p>${response}</p>
+                `;
+                
+                chatBox.appendChild(botDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 500);
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            renderCategories();
+        });
+    </script>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
