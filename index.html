@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h2>🚀 MyPortfolio</h2>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="projects.html">My Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+ <!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">Hi, I'm Jhames Villanueva</h1>
+<p class="hero-subtitle">Web Developer | HTML • CSS • JavaScript • PHP • Python</p>
+
+            <div class="hero-buttons">
+                <a href="projects.html" class="btn btn-primary">View My Work</a>
+                <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
+            </div>
+
+            <div class="quick-links">
+                <button class="quick-link" onclick="document.getElementById('storiesModal').classList.add('active'); document.body.style.overflow = 'hidden'; currentStory = null; currentPage = 0;">
+                    <i class="fas fa-book"></i> Read Stories
+                </button>
+
+                <button class="quick-link" onclick="document.getElementById('assistantModal').classList.add('active'); document.body.style.overflow = 'hidden'; assistantInitialized = false; initAssistant();">
+                    <i class="fas fa-robot"></i> Ask Assistant
+                </button>
+
+                <button class="quick-link" onclick="document.getElementById('quizModal').classList.add('active'); document.body.style.overflow = 'hidden'; quizInitialized = false; initQuiz();">
+                    <i class="fas fa-graduation-cap"></i> Take Quiz
+                </button>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <!-- Your Image Here -->
+            <img src="images/me.jpg" alt="My Photo" class="avatar">
+        </div>
+    </div>
+</section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>What I Offer</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Clean Code</h3>
+                    <p>Writing maintainable and efficient code following best practices.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Responsive Design</h3>
+                    <p>Websites that look great on all devices and screen sizes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Fast Performance</h3>
+                    <p>Optimized websites that load quickly and run smoothly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Interactive Stories</h3>
+                    <p>Engaging storytelling platform with 3 amazing tales.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Smart Assistant</h3>
+                    <p>AI-powered learning assistant for instant help.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Fun Quizzes</h3>
+                    <p>Test your knowledge with interactive quizzes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>MyPortfolio</h4>
+                    <p>Building digital experiences that matter.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Me</a></li>
+                        <li><a href="projects.html">My Projects</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Me</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 My Portfolio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/stories.js"></script>
+    <script src="js/assistant.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

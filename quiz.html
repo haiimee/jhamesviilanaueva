@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - My Project</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .project-page { margin-top: 70px; min-height: 100vh; padding-bottom: 50px; }
+        .back-btn { margin-bottom: 30px; }
+        .quiz-page { background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)); padding: 40px; border-radius: 15px; }
+        .choice-btn {
+            width: 100%;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+        }
+        .choice-btn:hover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.05);
+        }
+        .choice-btn.correct {
+            background: #10b981;
+            color: white;
+            border-color: transparent;
+        }
+        .choice-btn.incorrect {
+            background: #ef4444;
+            color: white;
+            border-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h2>🚀 MyPortfolio</h2>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About Me</a></li>
+                    <li><a href="../projects.html" class="active">My Projects</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="project-page">
+        <div class="container">
+            <a href="../projects.html" class="back-btn" style="display: inline-block;">
+                <button class="btn btn-secondary">← Back to Projects</button>
+            </a>
+
+            <div class="quiz-page">
+                <h1 style="font-size: 40px; margin-bottom: 10px;">🎓 Interactive Quiz</h1>
+                <p style="font-size: 18px; color: #666; margin-bottom: 30px;">5 fun questions with timer and score tracking</p>
+
+                <div class="quiz-container" style="background: white; padding: 30px; border-radius: 15px;">
+                    <div class="quiz-header" style="display: flex; justify-content: space-between; align-items: center; padding: 20px; background: #f8f9fa; border-radius: 10px; margin-bottom: 30px; flex-wrap: wrap; gap: 20px;">
+                        <div class="progress-section" style="flex: 1; min-width: 200px;">
+                            <div style="font-weight: 600; color: #667eea; margin-bottom: 10px;"><span id="questionNumber">Question 1</span> / <span id="totalQuestions">5</span></div>
+                            <div class="progress-bar-container" style="width: 100%; height: 8px; background: #ddd; border-radius: 10px; overflow: hidden;">
+                                <div id="progressBar" class="progress-bar" style="width: 20%; height: 100%; background: linear-gradient(90deg, #667eea, #764ba2); border-radius: 10px; transition: width 0.5s ease;"></div>
+                            </div>
+                        </div>
+                        <div class="timer-section" style="display: flex; align-items: center; gap: 10px; padding: 10px 20px; background: rgba(239, 68, 68, 0.1); border-radius: 10px; color: #ef4444; font-weight: 600;">
+                            <i class="fas fa-hourglass-end"></i>
+                            <span id="timer">15</span>s
+                        </div>
+                    </div>
+
+                    <div id="quizContent" class="quiz-content" style="margin-bottom: 20px;"></div>
+                    <div id="quizFeedback" class="quiz-feedback" style="padding: 15px 20px; border-radius: 10px; margin-bottom: 20px; display: none; font-weight: 600;"></div>
+                    <div id="quizResult" class="quiz-result" style="display: none; text-align: center;"></div>
+                    <div class="quiz-nav" id="quizNav" style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;"></div>
+                    <button id="tryAgainBtn" class="btn btn-primary btn-full" onclick="resetQuiz()" style="display: none; margin-top: 20px; width: 100%; padding: 14px;">
+                        <i class="fas fa-redo"></i> Try Again
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>MyPortfolio</h4>
+                    <p>Building digital experiences that matter.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../about.html">About Me</a></li>
+                        <li><a href="../projects.html">My Projects</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Me</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 My Portfolio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Quiz data
+        const quizData = [
+            {
+                question: "What is the capital of the Philippines?",
+                choices: ["Cebu", "Manila", "Davao", "Baguio"],
+                correct: "Manila"
+            },
+            {
+                question: "What is 8 × 5?",
+                choices: ["30", "35", "40", "45"],
+                correct: "40"
+            },
+            {
+                question: "Who invented the telephone?",
+                choices: ["Newton", "Bell", "Tesla", "Edison"],
+                correct: "Bell"
+            },
+            {
+                question: "What does HTML stand for?",
+                choices: ["Hyper Text Markup Language", "Home Tool Markup Language", "High Text Machine Language", "Hyperlinks Text Machine Language"],
+                correct: "Hyper Text Markup Language"
+            },
+            {
+                question: "Which planet is known as the Red Planet?",
+                choices: ["Earth", "Mars", "Venus", "Jupiter"],
+                correct: "Mars"
+            }
+        ];
+
+        let quizState = {
+            currentQuestion: 0,
+            score: 0,
+            timeLeft: 15,
+            timer: null,
+            selectedAnswer: null,
+            answered: false
+        };
+
+        function initQuiz() {
+            quizState = {
+                currentQuestion: 0,
+                score: 0,
+                timeLeft: 15,
+                timer: null,
+                selectedAnswer: null,
+                answered: false
+            };
+            showQuestion(0);
+        }
+
+        function showQuestion(index) {
+            const question = quizData[index];
+            
+            const progress = ((index + 1) / quizData.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('questionNumber').textContent = index + 1;
+            document.getElementById('totalQuestions').textContent = quizData.length;
+            
+            let choicesHTML = '';
+            question.choices.forEach((choice) => {
+                choicesHTML += `<button class="choice-btn" onclick="selectAnswer('${choice}')">${choice}</button>`;
+            });
+            
+            const quizContent = document.getElementById('quizContent');
+            quizContent.innerHTML = `
+                <p style="font-size: 18px; font-weight: 600; margin-bottom: 20px; color: #333;">${question.question}</p>
+                <div class="choices">
+                    ${choicesHTML}
+                </div>
+            `;
+            
+            quizState.selectedAnswer = null;
+            quizState.answered = false;
+            document.getElementById('quizFeedback').textContent = '';
+            document.getElementById('quizFeedback').style.display = 'none';
+            document.getElementById('quizResult').innerHTML = '';
+            document.getElementById('quizResult').style.display = 'none';
+            
+            quizState.timeLeft = 15;
+            updateTimer();
+            clearInterval(quizState.timer);
+            startTimer();
+            
+            updateNavButtons();
+        }
+
+        function startTimer() {
+            quizState.timer = setInterval(() => {
+                quizState.timeLeft--;
+                updateTimer();
+                
+                if (quizState.timeLeft <= 0) {
+                    clearInterval(quizState.timer);
+                    quizState.answered = true;
+                    showFeedback("⏱️ Time's up!", "error");
+                }
+            }, 1000);
+        }
+
+        function updateTimer() {
+            const timerDisplay = document.getElementById('timer');
+            timerDisplay.textContent = quizState.timeLeft;
+            
+            if (quizState.timeLeft <= 5) {
+                timerDisplay.parentElement.style.color = '#ef4444';
+            } else {
+                timerDisplay.parentElement.style.color = '#667eea';
+            }
+        }
+
+        function selectAnswer(answer) {
+            if (!quizState.answered) {
+                quizState.selectedAnswer = answer;
+                quizState.answered = true;
+                clearInterval(quizState.timer);
+                
+                const question = quizData[quizState.currentQuestion];
+                const buttons = document.querySelectorAll('.choice-btn');
+                
+                buttons.forEach(btn => {
+                    if (btn.textContent === answer) {
+                        if (answer === question.correct) {
+                            btn.classList.add('correct');
+                            quizState.score++;
+                            showFeedback("✅ Correct!", "success");
+                        } else {
+                            btn.classList.add('incorrect');
+                            showFeedback(`❌ Incorrect! Correct answer: ${question.correct}`, "error");
+                        }
+                    } else if (btn.textContent === question.correct) {
+                        btn.classList.add('correct');
+                    }
+                    btn.disabled = true;
+                });
+            }
+        }
+
+        function showFeedback(message, type) {
+            const feedback = document.getElementById('quizFeedback');
+            feedback.textContent = message;
+            feedback.style.display = 'block';
+            feedback.style.background = type === 'success' ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)';
+            feedback.style.color = type === 'success' ? '#10b981' : '#ef4444';
+            feedback.style.borderLeft = `4px solid ${type === 'success' ? '#10b981' : '#ef4444'}`;
+            updateNavButtons();
+        }
+
+        function updateNavButtons() {
+            const quizNav = document.getElementById('quizNav');
+            quizNav.innerHTML = '';
+            
+            const backBtn = document.createElement('button');
+            backBtn.className = 'btn btn-secondary';
+            backBtn.textContent = '← Back';
+            backBtn.onclick = () => window.history.back();
+            
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'btn btn-primary';
+            nextBtn.textContent = quizState.currentQuestion === quizData.length - 1 ? 'Submit ✓' : 'Next →';
+            nextBtn.disabled = !quizState.answered;
+            nextBtn.onclick = () => {
+                if (quizState.currentQuestion < quizData.length - 1) {
+                    quizState.currentQuestion++;
+                    showQuestion(quizState.currentQuestion);
+                } else {
+                    showResult();
+                }
+            };
+            
+            quizNav.appendChild(backBtn);
+            quizNav.appendChild(nextBtn);
+        }
+
+        function showResult() {
+            document.getElementById('quizContent').innerHTML = '';
+            document.getElementById('quizFeedback').style.display = 'none';
+            document.getElementById('quizNav').innerHTML = '';
+            
+            const percentage = Math.round((quizState.score / quizData.length) * 100);
+            const performanceMessage = 
+                percentage === 100 ? "🌟 Perfect Score!" :
+                percentage >= 80 ? "🎉 Excellent Work!" :
+                percentage >= 60 ? "👍 Good Job!" :
+                percentage >= 40 ? "💪 Keep Practicing!" :
+                "📚 Try Again!";
+            
+            const resultDiv = document.getElementById('quizResult');
+            resultDiv.innerHTML = `
+                <h2 style="font-size: 32px; color: #667eea; margin-bottom: 20px;">${performanceMessage}</h2>
+                <div style="width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #667eea, #764ba2); color: white; display: flex; align-items: center; justify-content: center; font-size: 48px; font-weight: 700; margin: 20px auto;">
+                    ${percentage}%
+                </div>
+                <p style="font-size: 18px; color: #333; margin-bottom: 10px;">You scored <strong>${quizState.score} out of ${quizData.length}</strong></p>
+                <p style="color: #666;">Correct Answers: ${quizState.score}</p>
+                <p style="color: #666;">Incorrect Answers: ${quizData.length - quizState.score}</p>
+            `;
+            resultDiv.style.display = 'block';
+            
+            document.getElementById('tryAgainBtn').style.display = 'block';
+        }
+
+        function resetQuiz() {
+            initQuiz();
+            document.getElementById('quizResult').style.display = 'none';
+            document.getElementById('tryAgainBtn').style.display = 'none';
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            initQuiz();
+        });
+    </script>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
