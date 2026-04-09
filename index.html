@@ -43,18 +43,33 @@
             </div>
 
             <div class="quick-links">
-                <button class="quick-link" onclick="document.getElementById('storiesModal').classList.add('active'); document.body.style.overflow = 'hidden'; currentStory = null; currentPage = 0;">
-                    <i class="fas fa-book"></i> Read Stories
-                </button>
+    <button class="quick-link" 
+        onclick="document.getElementById('storiesModal').classList.add('active'); 
+                 document.body.style.overflow = 'hidden'; 
+                 currentStory = null; 
+                 currentPage = 0;
+                 window.location.href='stories.html';">
+        <i class="fas fa-book"></i> Read Stories
+    </button>
 
-                <button class="quick-link" onclick="document.getElementById('assistantModal').classList.add('active'); document.body.style.overflow = 'hidden'; assistantInitialized = false; initAssistant();">
-                    <i class="fas fa-robot"></i> Ask Assistant
-                </button>
+    <button class="quick-link" 
+        onclick="document.getElementById('assistantModal').classList.add('active'); 
+                 document.body.style.overflow = 'hidden'; 
+                 assistantInitialized = false; 
+                 initAssistant();
+                 window.location.href='assistant.html';">
+        <i class="fas fa-robot"></i> Ask Assistant
+    </button>
 
-                <button class="quick-link" onclick="document.getElementById('quizModal').classList.add('active'); document.body.style.overflow = 'hidden'; quizInitialized = false; initQuiz();">
-                    <i class="fas fa-graduation-cap"></i> Take Quiz
-                </button>
-            </div>
+    <button class="quick-link" 
+        onclick="document.getElementById('quizModal').classList.add('active'); 
+                 document.body.style.overflow = 'hidden'; 
+                 quizInitialized = false; 
+                 initQuiz();
+                 window.location.href='quiz.html';">
+        <i class="fas fa-graduation-cap"></i> Take Quiz
+    </button>
+</div>
         </div>
 
         <div class="hero-image">
